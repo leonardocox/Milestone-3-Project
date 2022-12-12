@@ -17,7 +17,26 @@ export default class CreateRoomPage extends Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      guestCanPause: true,
+      votesToSkip: this.defaultVotes,
+    };
+    this.handleRoomButtonPressed = this.handleRoomButtonPressed.bind(this);
   }
+
+  handleVotesChange(e) {
+    this.setState({
+      votesToSkip: e.target.value,
+    });
+  }
+
+  handleGuestCanPauseChange(e) {
+    this.setState({
+      guestCanPause: e.target.value === "true" ? true : false,
+    });
+  }
+
+  handleRoomButtonPressed() {}
 
   render() {
     return (
@@ -32,7 +51,11 @@ export default class CreateRoomPage extends Component {
             <FormHelperText>
               <div align="center">Guest Control of Playback</div>
             </FormHelperText>
-            <RadioGroup row defaultValue="true">
+            <RadioGroup
+              row
+              defaultValue="true"
+              onChange={this.handleGuestCanPauseChange}
+            >
               <FormControlLabel
                 value="true"
                 control={<Radio color="primary" />}
@@ -52,6 +75,7 @@ export default class CreateRoomPage extends Component {
           <FormControl>
             <TextField
               required={true}
+              onChange={this.handleVotesChange}
               type="number"
               defaultValue={this.defaultVotes}
               inputProps={{
