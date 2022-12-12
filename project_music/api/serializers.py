@@ -1,4 +1,3 @@
-# Will take model and translate into a JSON response (what serializers does)
 from rest_framework import serializers
 from .models import Room
 
