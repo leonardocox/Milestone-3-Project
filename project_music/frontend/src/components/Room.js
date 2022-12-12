@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { Grid, Button, Typography } from "@mui/material";
 
 export default function Room() {
   const [votesToSkip, setVotesToSkip] = useState(2);
@@ -17,11 +18,40 @@ export default function Room() {
     });
 
   return (
-    <div>
+    <Grid container spacing={1}>
+      <Grid item xs={12} align="center">
+        <Typography variant="h4" component="h4">
+          Code: {roomCode}
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Typography variant="h6" component="h6">
+          Votes: {votesToSkip}
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Typography variant="h6" component="h6">
+          Guest Can Pause: {String(guestCanPause)}
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Typography variant="h6" component="h6">
+          Host: {String(isHost)}
+        </Typography>
+      </Grid>
+      <Grid item xs={12} align="center">
+        <Button variant="contained" color="secondary" to="/" component={Link}>
+          Leave Room
+        </Button>
+      </Grid>
+    </Grid>
+  );
+}
+/* 
+<div>
       <h3>{roomCode}</h3>
       <p>Votes: {votesToSkip}</p>
       <p>Guest Can Pause: {String(guestCanPause)}</p>
       <p>Host: {String(isHost)}</p>
     </div>
-  );
-}
+*/
