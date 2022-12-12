@@ -10,6 +10,9 @@ export default class HomePage extends Component {
     super(props);
   }
 
+  // componentdidmount means that the component just rendered on the screen for the first time
+  async componentDidMount() {}
+
   renderHomePage() {
     return (
       <Grid container spacing={3}>
@@ -36,7 +39,7 @@ export default class HomePage extends Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<p>This is the home page</p>}></Route>
+          <Route exact path="/" element={this.renderHomePage()}></Route>
           <Route path="/join" element={<RoomJoinPage />} />
           <Route path="/create" element={<CreateRoomPage />} />
           <Route path="/room/:roomCode" element={<Room />} />
